@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="ljson_cpp">
+      <UniqueIdentifier>{a00fb114-f44b-495c-ae6b-75bd23a7e2a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ljson_c">
+      <UniqueIdentifier>{bb341342-6df6-49c6-8b70-e48c1fa46226}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{31144e3e-2a34-4d23-940c-99460e1f364c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ljson_fundamental.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\LJson.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ljson_fundamental.c">
+      <Filter>ljson_c</Filter>
+    </ClCompile>
+    <ClCompile Include="ljson_fundamental_get.c">
+      <Filter>ljson_c</Filter>
+    </ClCompile>
+    <ClCompile Include="ljson_fundamental_list.c">
+      <Filter>ljson_c</Filter>
+    </ClCompile>
+    <ClCompile Include="ljson_fundamental_memory.c">
+      <Filter>ljson_c</Filter>
+    </ClCompile>
+    <ClCompile Include="ljson_fundamental_read.c">
+      <Filter>ljson_c</Filter>
+    </ClCompile>
+    <ClCompile Include="ljson_fundamental_set.c">
+      <Filter>ljson_c</Filter>
+    </ClCompile>
+    <ClCompile Include="ljson_fundamental_write.c">
+      <Filter>ljson_c</Filter>
+    </ClCompile>
+    <ClCompile Include="LJson.cpp">
+      <Filter>ljson_cpp</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
