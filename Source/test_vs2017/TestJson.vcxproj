@@ -30,7 +30,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -38,14 +38,14 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -53,7 +53,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -195,6 +195,10 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TestJson.h" />
     <ClInclude Include="TestJsonDlg.h" />
+    <ClInclude Include="TSCtrl\TSChildCtrl.h" />
+    <ClInclude Include="TSCtrl\TSCtrl.h" />
+    <ClInclude Include="TSCtrl\TSCtrlHeader.h" />
+    <ClInclude Include="TSCtrl\TSCtrlItem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SimpleJson.cpp" />
@@ -206,6 +210,16 @@
     </ClCompile>
     <ClCompile Include="TestJson.cpp" />
     <ClCompile Include="TestJsonDlg.cpp" />
+    <ClCompile Include="TestJsonDlg_test.cpp" />
+    <ClCompile Include="TestJsonDlg_Tree.cpp" />
+    <ClCompile Include="TSCtrl\TSChildCtrl.cpp" />
+    <ClCompile Include="TSCtrl\TSCtrl.cpp" />
+    <ClCompile Include="TSCtrl\TSCtrlHeader.cpp" />
+    <ClCompile Include="TSCtrl\TSCtrl_Control.cpp" />
+    <ClCompile Include="TSCtrl\TSCtrl_Key.cpp" />
+    <ClCompile Include="TSCtrl\TSCtrl_Mouse.cpp" />
+    <ClCompile Include="TSCtrl\TSCtrl_Paint.cpp" />
+    <ClCompile Include="TSCtrl\TSCtrl_Scroll.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TestJson.rc" />

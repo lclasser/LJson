@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="TSCtrl">
+      <UniqueIdentifier>{aad6924e-fb7a-4eac-ad47-dd156c6ce0a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -39,6 +42,18 @@
     <ClInclude Include="..\include\LJson.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="TSCtrl\TSCtrlHeader.h">
+      <Filter>TSCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="TSCtrl\TSCtrlItem.h">
+      <Filter>TSCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="TSCtrl\TSChildCtrl.h">
+      <Filter>TSCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="TSCtrl\TSCtrl.h">
+      <Filter>TSCtrl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestJson.cpp">
@@ -52,6 +67,36 @@
     </ClCompile>
     <ClCompile Include="SimpleJson.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TestJsonDlg_test.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TestJsonDlg_Tree.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TSCtrl\TSCtrl_Control.cpp">
+      <Filter>TSCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="TSCtrl\TSCtrl_Key.cpp">
+      <Filter>TSCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="TSCtrl\TSCtrl_Mouse.cpp">
+      <Filter>TSCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="TSCtrl\TSCtrl_Paint.cpp">
+      <Filter>TSCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="TSCtrl\TSCtrl_Scroll.cpp">
+      <Filter>TSCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="TSCtrl\TSCtrlHeader.cpp">
+      <Filter>TSCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="TSCtrl\TSChildCtrl.cpp">
+      <Filter>TSCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="TSCtrl\TSCtrl.cpp">
+      <Filter>TSCtrl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

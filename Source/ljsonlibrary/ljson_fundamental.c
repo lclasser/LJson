@@ -97,7 +97,7 @@ LJChar* ljson_trim_left(LJChar* str, LJLong len)
 		case '\t':
 		case '\r':
 		case '\n':
-			str[len] = 0x00;
+			// str[len] = 0x00;
 			break;
 		default:
 			if( pos > 0 ) {
@@ -106,7 +106,7 @@ LJChar* ljson_trim_left(LJChar* str, LJLong len)
 			}
 			return str;
 		}
-		pos--;
+		pos++;
 	}
 	return str;
 }

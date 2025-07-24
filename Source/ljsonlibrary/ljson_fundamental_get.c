@@ -13,6 +13,8 @@
 #include <wchar.h>
 #endif // _UNICODE
 
+LJLong ljson_check_null(LJsonObject* pObject);
+
 LJLong ljson_get_typestring(LJsonObject* obj, LJChar* value, LJLong size)
 {
 	int rtn = 8;
@@ -133,17 +135,19 @@ LJChar* ljson_get_value(LJsonObject* pObject)
 	return pObject->value.str;
 }
 
-LJChar* _ljson_return_string(LJLong type, LJChar* value)
+LJChar* _ljson_return_string(LJsonObject* pObject)
 {
 	static LJChar* rtn_object = FIXED_STRING("[object]");
 	static LJChar* rtn_array = FIXED_STRING("[array]");
-	switch( type )
+	switch( pObject->type )
 	{
 	case LJSON_TYPE_STRING:
 	case LJSON_TYPE_INTEGER:
 	case LJSON_TYPE_FLOAT:
 	case LJSON_TYPE_SCRIPT:
-		return value;
+		if( ljson_check_null(pObject) == TRUE )
+			return NULL;
+		return pObject->value.str;
 	case LJSON_TYPE_OBJECT:
 		return rtn_object;
 	case LJSON_TYPE_ARRAY:
@@ -152,51 +156,59 @@ LJChar* _ljson_return_string(LJLong type, LJChar* value)
 	return NULL;
 }
 
-long _ljson_return_integer(LJLong type, LJChar* value)
+long _ljson_return_integer(LJsonObject* pObject)
 {
-	switch( type )
+	switch( pObject->type )
 	{
 	case LJSON_TYPE_STRING:
 	case LJSON_TYPE_INTEGER:
 	case LJSON_TYPE_FLOAT:
-		return _LJ_atol(value);
+		if( ljson_check_null(pObject) == TRUE )
+			return 0;
+		return _LJ_atol(pObject->value.str);
 	}
 	return 0;
 }
 
-double _ljson_return_double(LJLong type, LJChar* value)
+double _ljson_return_double(LJsonObject* pObject)
 {
-	switch( type )
+	switch( pObject->type )
 	{
 	case LJSON_TYPE_STRING:
 	case LJSON_TYPE_INTEGER:
 	case LJSON_TYPE_FLOAT:
-		return _LJ_atod(value);
+		return _LJ_atod(pObject->value.str);
 	}
 	return 0;
 }
 
 LJChar* ljson_get_string(LJsonObject* pObject, LJChar* name)
 {
-	LJsonObject* pChild = (LJsonObject*)ljson_get_object(pObject, name);
+	LJsonObject* pChild = pObject;
+	if( name != NULL )
+		pChild = (LJsonObject*)ljson_get_object(pObject, name);
 	if( pChild )
-		return _ljson_return_string(pChild->type, pChild->value.str);
+		return _ljson_return_string(pChild);
 	return NULL;
 }
 
 LJLong ljson_get_integer(LJsonObject* pObject, LJChar* name)
 {
-	LJsonObject* pChild = (LJsonObject*)ljson_get_object(pObject, name);
+	LJsonObject* pChild = pObject;
+	if( name != NULL )
+		pChild = (LJsonObject*)ljson_get_object(pObject, name);
 	if( pChild )
-		return _ljson_return_integer(pChild->type, pChild->value.str);
+		return _ljson_return_integer(pChild);
 	return 0;
 }
 
 double ljson_get_double(LJsonObject* pObject, LJChar* name)
 {
-	LJsonObject* pChild = (LJsonObject*)ljson_get_object(pObject, name);
+	LJsonObject* pChild = pObject;
+	if( name != NULL )
+		pChild = (LJsonObject*)ljson_get_object(pObject, name);
 	if( pChild )
-		return _ljson_return_double(pChild->type, pChild->value.str);
+		return _ljson_return_double(pChild);
 	return 0;
 }
 
@@ -217,7 +229,7 @@ LJChar* ljson_get_array_string(LJsonObject* pOwner, LJLong pos)
 {
 	LJsonObject* pChild = (LJsonObject*)ljson_get_object_item(pOwner, pos);
 	if( pChild )
-		return _ljson_return_string(pChild->type, pChild->value.str);
+		return _ljson_return_string(pChild);
 	return NULL;
 }
 
@@ -225,7 +237,7 @@ LJLong ljson_get_array_integer(LJsonObject* pOwner, LJLong pos)
 {
 	LJsonObject* pChild = (LJsonObject*)ljson_get_object_item(pOwner, pos);
 	if( pChild )
-		return _ljson_return_integer(pChild->type, pChild->value.str);
+		return _ljson_return_integer(pChild);
 	return 0;
 }
 
@@ -233,6 +245,6 @@ double ljson_get_array_double(LJsonObject* pOwner, LJLong pos)
 {
 	LJsonObject* pChild = (LJsonObject*)ljson_get_object_item(pOwner, pos);
 	if( pChild )
-		return _ljson_return_double(pChild->type, pChild->value.str);
+		return _ljson_return_double(pChild);
 	return 0;
 }

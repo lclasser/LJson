@@ -114,6 +114,7 @@ LJLong ljson_read_value(LJsonStruct* pStruct, LJsonObject* pObject)
 				pObject->type = LJSON_TYPE_NULL;
 			}
 			return pStruct->rpos;
+		case '\'':
 		case '\"': // string value
 			return ljson_read_string(pStruct, pObject);
 		case '{':
@@ -236,6 +237,11 @@ LJLong ljson_read_string(LJsonStruct* pStruct, LJsonObject* pOwner)
 		case '\n':
 			pStruct->rtext[pStruct->rpos] = ' ';
 			break;
+		case '\\':
+			if( pValue->str == NULL )
+				pValue->str = &pStruct->rtext[pStruct->rpos];
+			pStruct->rpos++; // 다음문자는 특수문자로 Skip
+			break;
 		default:
 			if( pValue->str == NULL )
 				pValue->str = &pStruct->rtext[pStruct->rpos];
@@ -301,9 +307,9 @@ LJLong ljson_check_null(LJsonObject* pObject)
 	if( (pObject->type == LJSON_TYPE_SCRIPT) && _LJ_strlen(pObject->value.str) == 4 )
 	{
 		if( (pObject->value.str[0] == FIXED_STRING('n') || pObject->value.str[0] == FIXED_STRING('N')) &&
-			(pObject->value.str[0] == FIXED_STRING('u') || pObject->value.str[0] == FIXED_STRING('U')) &&
-		    (pObject->value.str[0] == FIXED_STRING('l') || pObject->value.str[0] == FIXED_STRING('L')) &&
-		    (pObject->value.str[0] == FIXED_STRING('l') || pObject->value.str[0] == FIXED_STRING('L'))
+			(pObject->value.str[1] == FIXED_STRING('u') || pObject->value.str[1] == FIXED_STRING('U')) &&
+		    (pObject->value.str[2] == FIXED_STRING('l') || pObject->value.str[2] == FIXED_STRING('L')) &&
+		    (pObject->value.str[3] == FIXED_STRING('l') || pObject->value.str[3] == FIXED_STRING('L'))
 		   ) {
 			return TRUE;
 		}
@@ -442,12 +448,14 @@ LJLong ljson_read_fromstring(LJsonStruct* pStruct, LJChar* textual)
 			rtn = ljson_read_object(pStruct, &pStruct->root);
 			if( rtn < 0 )
 				return rtn;
-			break;
+			// break;
+			return pStruct->rpos;
 		case '[':
 			rtn = ljson_read_array(pStruct, &pStruct->root);
 			if( rtn < 0 )
 				return rtn;
-			break;
+			// break;
+			return pStruct->rpos;
 		}
 		pStruct->rpos++;
 	}

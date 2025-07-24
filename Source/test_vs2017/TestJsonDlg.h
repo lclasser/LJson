@@ -3,7 +3,8 @@
 //
 
 #pragma once
-
+#include "../include/LJson.h"
+#include "TSCtrl/TSCtrl.h"
 
 // CTestJsonDlg 대화 상자
 class CTestJsonDlg : public CDialogEx
@@ -28,10 +29,17 @@ protected:
 
 	static CString m_text;
 
-	CEdit m_EditOutput;
-	CEdit m_EditText;
 	CString m_JsonText;
-	CString m_JsonOutput;
+	CString m_EditError;
+	CString m_EditOutput;
+	CTSCtrl* m_pTreeOutput;
+
+	void OutputToEdit(LJsonObject* pROOT);
+	void OutputToTree(LJsonObject* pROOT);
+
+	BOOL Tree_Initialize();
+	void Tree_Destroy();
+	int RecursiveTree(LJsonObject* ptr_object, CTSCtrlItem* pItem);
 
 	// 생성된 메시지 맵 함수
 	virtual BOOL OnInitDialog();
@@ -39,10 +47,13 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	afx_msg void OnBnClickedButtonConvert();
-	afx_msg void OnBnClickedButton1();
-	afx_msg void OnBnClickedButton2();
+	afx_msg void OnBnClickedButtonCTest();
+	afx_msg void OnBnClickedButtonCPPTest();
 	DECLARE_MESSAGE_MAP()
 public:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
+	afx_msg void OnBnClickedCheckVtext();
+	afx_msg void OnBnClickedCheckVtree();
+	afx_msg void OnDestroy();
 };
